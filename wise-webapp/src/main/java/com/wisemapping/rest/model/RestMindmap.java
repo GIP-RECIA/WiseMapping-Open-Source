@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,9 +28,6 @@ import com.wisemapping.util.TimeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -43,6 +39,7 @@ import java.util.Calendar;
 )
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestMindmap {
+
     @JsonIgnore
     private final Collaborator collaborator;
     @JsonIgnore
@@ -58,7 +55,8 @@ public class RestMindmap {
         this.mindmap = mindmap;
         this.collaborator = collaborator;
         if (collaborator != null) {
-            final CollaborationProperties collaborationProperties = mindmap.findCollaborationProperties(collaborator, false);
+            final CollaborationProperties collaborationProperties =
+                    mindmap.findCollaborationProperties(collaborator, false);
             if (collaborationProperties != null) {
                 this.properties = collaborationProperties.getMindmapProperties();
             }
@@ -110,7 +108,6 @@ public class RestMindmap {
     public void setCreator(String creatorUser) {
     }
 
-
     public RestCollaborator getLastModifierUser() {
         final User lastEditor = mindmap.getLastEditor();
 
@@ -160,7 +157,6 @@ public class RestMindmap {
     }
 
     public void setOwner(String owner) {
-
     }
 
     @Nullable
@@ -190,4 +186,5 @@ public class RestMindmap {
     public Mindmap getDelegated() {
         return this.mindmap;
     }
+
 }

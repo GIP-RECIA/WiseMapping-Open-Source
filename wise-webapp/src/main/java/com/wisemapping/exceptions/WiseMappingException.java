@@ -18,15 +18,13 @@
 
 package com.wisemapping.exceptions;
 
-public class WiseMappingException
-    extends Exception
-{
-    public WiseMappingException(String str)
-    {
+public class WiseMappingException extends Exception {
+
+    public WiseMappingException(String str) {
         super(str);
     }
-    public WiseMappingException(String str,Throwable e)
-    {
+
+    public WiseMappingException(String str,Throwable e) {
         super(str);
         initCause(e);
     }

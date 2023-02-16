@@ -29,6 +29,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "MINDMAP_HISTORY")
 public class MindMapHistory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -47,7 +48,6 @@ public class MindMapHistory {
     private int mindmapId;
 
     public MindMapHistory() {
-
     }
 
     public int getId() {
@@ -95,4 +95,5 @@ public class MindMapHistory {
     public byte[] getUnzipXml() throws IOException {
         return ZipUtils.zipToBytes(getZippedXml());
     }
+
 }

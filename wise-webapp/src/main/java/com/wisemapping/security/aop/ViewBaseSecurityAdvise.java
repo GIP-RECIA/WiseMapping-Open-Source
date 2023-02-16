@@ -26,9 +26,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ViewBaseSecurityAdvise
-        extends BaseSecurityAdvice
-        implements MethodInterceptor {
+public class ViewBaseSecurityAdvise extends BaseSecurityAdvice implements MethodInterceptor {
 
     @Override
     public Object invoke(@NotNull MethodInvocation methodInvocation) throws Throwable {
@@ -45,4 +43,5 @@ public class ViewBaseSecurityAdvise
     protected boolean isAllowed(@Nullable User user, int mapId) {
         return getMindmapService().hasPermissions(user, mapId, CollaborationRole.VIEWER);
     }
+
 }

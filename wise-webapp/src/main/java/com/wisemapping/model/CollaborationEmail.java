@@ -18,12 +18,13 @@
 
 package com.wisemapping.model;
 
-public class CollaborationEmail
-{
+public class CollaborationEmail {
+
     private String subject;
     private String message;
 
-    public CollaborationEmail(){}
+    public CollaborationEmail() {
+    }
 
     public String getSubject() {
         return subject;
@@ -40,4 +41,5 @@ public class CollaborationEmail
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

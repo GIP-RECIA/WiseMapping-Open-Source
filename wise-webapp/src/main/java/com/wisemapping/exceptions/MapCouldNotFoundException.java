@@ -18,16 +18,13 @@
 
 package com.wisemapping.exceptions;
 
-
 import javax.validation.constraints.NotNull;
 
-public class MapCouldNotFoundException
-    extends ClientException
-{
+public class MapCouldNotFoundException extends ClientException {
+
     private static final String MSG_KEY = "MAP_CAN_NOT_BE_FOUND";
 
-    public MapCouldNotFoundException(@NotNull String msg)
-    {
+    public MapCouldNotFoundException(@NotNull String msg) {
         super(msg,Severity.FATAL);
     }
 
@@ -36,4 +33,5 @@ public class MapCouldNotFoundException
     protected String getMsgBundleKey() {
         return MSG_KEY;
     }
+
 }

@@ -17,7 +17,6 @@
  */
 package com.wisemapping.listener;
 
-
 import com.wisemapping.exceptions.AccessDeniedSecurityException;
 import com.wisemapping.exceptions.LockException;
 import com.wisemapping.model.User;
@@ -36,11 +35,11 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 public class UnlockOnExpireListener implements HttpSessionListener {
+
     private static final Logger logger = LogManager.getLogger();
 
     @Override
     public void sessionCreated(@NotNull HttpSessionEvent event) {
-
     }
 
     @Override
@@ -62,4 +61,5 @@ public class UnlockOnExpireListener implements HttpSessionListener {
             }
         }
     }
+
 }

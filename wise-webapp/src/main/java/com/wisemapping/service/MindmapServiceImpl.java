@@ -28,16 +28,13 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
-public class MindmapServiceImpl
-        implements MindmapService {
+public class MindmapServiceImpl implements MindmapService {
 
     @Autowired
     private MindmapManager mindmapManager;
@@ -50,7 +47,7 @@ public class MindmapServiceImpl
     private NotificationService notificationService;
 
     private String adminUser;
-    final private LockManager lockManager;
+    private final LockManager lockManager;
 
     public MindmapServiceImpl() {
         this.lockManager = new LockManagerImpl();
@@ -167,7 +164,6 @@ public class MindmapServiceImpl
 
     @Override
     public void addMindmap(@NotNull Mindmap map, @NotNull User user) {
-
         final String title = map.getTitle();
 
         if (title == null || title.length() == 0) {
@@ -205,7 +201,6 @@ public class MindmapServiceImpl
 
         if (role == CollaborationRole.OWNER) {
             throw new CollaborationException("Ownership can not be modified");
-
         }
 
         final Set<Collaboration> collaborations = mindmap.getCollaborations();
@@ -238,7 +233,6 @@ public class MindmapServiceImpl
         }
         return collaborator;
     }
-
 
     @Override
     public List<MindMapHistory> findMindmapHistory(int mindmapId) {
@@ -296,7 +290,6 @@ public class MindmapServiceImpl
         return collaboration;
     }
 
-
     public void setMindmapManager(MindmapManager mindmapManager) {
         this.mindmapManager = mindmapManager;
     }
@@ -317,4 +310,5 @@ public class MindmapServiceImpl
     public String getAdminUser() {
         return adminUser;
     }
+
 }

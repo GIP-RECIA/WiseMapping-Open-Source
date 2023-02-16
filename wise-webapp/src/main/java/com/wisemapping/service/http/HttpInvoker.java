@@ -1,6 +1,6 @@
 package com.wisemapping.service.http;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,7 @@ public class HttpInvoker {
 
 	protected static Logger logger = LogManager.getLogger(HttpInvoker.class);
 
-	private ObjectMapper mapper = new ObjectMapper();
+	private final ObjectMapper mapper = new ObjectMapper();
 
 	public HttpInvoker() {
 		super();
@@ -50,10 +50,10 @@ public class HttpInvoker {
 		String responseBody = null;
 		try {
 			if (logger.isDebugEnabled()) {
-				logger.debug("finalUrl: " + url);
-				logger.debug("method: " + method);
-				logger.debug("payload: " + jsonPayload);
-				logger.debug("header: " + headers);
+				logger.debug("finalUrl: {}", url);
+				logger.debug("method: {}", method);
+				logger.debug("payload: {}", jsonPayload);
+				logger.debug("header: {}", headers);
 			}
 
 			CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -76,14 +76,14 @@ public class HttpInvoker {
 				if (requestContentType.equals(HttpInvokerContentType.JSON)) {
 					if (jsonPayload == null)
 						throw new HttpInvokerException("Json content is required");
-					entity = new StringEntity(jsonPayload, Charset.forName("UTF-8"));
+					entity = new StringEntity(jsonPayload, StandardCharsets.UTF_8);
 					((HttpEntityEnclosingRequestBase) httpRequst).setEntity(entity);
 				}
 				if (requestContentType.equals(HttpInvokerContentType.FORM_ENCODED)) {
-					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+					List<NameValuePair> nameValuePairs = new ArrayList<>();
 					Set<String> keys = formData.keySet();
 					for (String key : keys) {
-						nameValuePairs.add(new BasicNameValuePair(key, formData.get(key).toString()));
+						nameValuePairs.add(new BasicNameValuePair(key, formData.get(key)));
 					}
 					entity = new UrlEncodedFormEntity(nameValuePairs);
 					((HttpEntityEnclosingRequestBase) httpRequst).setEntity(entity);
@@ -111,7 +111,7 @@ public class HttpInvoker {
 					: null;
 			if (responseBody != null) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("response plain: " + responseBody);
+					logger.debug("response plain: {}", responseBody);
 				}
 				try {
 					root = mapper.readTree(responseBody);
@@ -123,7 +123,7 @@ public class HttpInvoker {
 			}
 
 			if (response.getStatusLine().getStatusCode() >= 400) {
-				logger.error("error response: " + responseBody);
+				logger.error("error response: {}", responseBody);
 				throw new HttpInvokerException("error invoking " + url + ", response: " + responseBody + ", status: "
 						+ response.getStatusLine().getStatusCode());
 			}
@@ -136,12 +136,10 @@ public class HttpInvoker {
 		} catch (HttpInvokerException e) {
 			throw e;
 		} catch (Exception e) {
-			logger.error("cant invoke service " + url);
-			logger.error("response: " + responseBody, e);
+			logger.error("cant invoke service {}", url);
+			logger.error("response: {}", responseBody, e);
 			throw new HttpInvokerException("cant invoke service " + url, e);
 		}
 	}
-
-
 
 }

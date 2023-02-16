@@ -18,7 +18,6 @@
 
 package com.wisemapping.model;
 
-
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
@@ -103,7 +102,6 @@ public class Collaboration implements Serializable {
         this.collaborator = collaborator;
     }
 
-
     @Nullable
     public CollaborationProperties getCollaborationProperties() {
         return this.collaborationProperties;
@@ -115,7 +113,6 @@ public class Collaboration implements Serializable {
 
     public boolean hasPermissions(@NotNull CollaborationRole role) {
         return this.getRole().ordinal() <= role.ordinal();
-
     }
 
     @Override
@@ -136,4 +133,5 @@ public class Collaboration implements Serializable {
         //https://thorben-janssen.com/ultimate-guide-to-implementing-equals-and-hashcode-with-hibernate/
         return 13;
     }
+
 }

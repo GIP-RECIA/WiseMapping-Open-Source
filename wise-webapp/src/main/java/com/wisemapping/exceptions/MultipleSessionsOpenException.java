@@ -20,13 +20,11 @@ package com.wisemapping.exceptions;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MultipleSessionsOpenException
-    extends ClientException
-{
+public class MultipleSessionsOpenException extends ClientException {
+
     private static final String MSG_KEY = "MINDMAP_OUTDATED_BY_YOU";
 
-    public MultipleSessionsOpenException(@NotNull String techInfo)
-    {
+    public MultipleSessionsOpenException(@NotNull String techInfo) {
         super(techInfo,Severity.INFO);
     }
 
@@ -35,4 +33,5 @@ public class MultipleSessionsOpenException
     protected String getMsgBundleKey() {
         return MSG_KEY;
     }
+
 }

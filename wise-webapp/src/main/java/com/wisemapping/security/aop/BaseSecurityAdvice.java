@@ -28,6 +28,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseSecurityAdvice {
+
     private MindmapService mindmapService = null;
 
     public void checkRole(MethodInvocation methodInvocation) throws AccessDeniedSecurityException {
@@ -62,4 +63,5 @@ public abstract class BaseSecurityAdvice {
     public void setMindmapService(MindmapService service) {
         this.mindmapService = service;
     }
+
 }

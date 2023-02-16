@@ -32,10 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,62 +50,57 @@ public class AccountController extends BaseController {
     @Autowired
     private LabelService labelService;
 
-    @RequestMapping(method = RequestMethod.PUT, value = "account/password", consumes = {"text/plain"})
+    @PutMapping(value = "account/password", consumes = {"text/plain"})
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void changePassword(@RequestBody String password) {
         if (password == null) {
             throw new IllegalArgumentException("Password can not be null");
         }
-
         final User user = Utils.getUser(true);
         user.setPassword(password);
         userService.changePassword(user);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/account", produces = {"application/json"})
+    @GetMapping(value = "/account", produces = {"application/json"})
     public RestUser fetchAccount() {
         final User user = Utils.getUser(true);
         return new RestUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "account/firstname", consumes = {"text/plain"})
+    @PutMapping(value = "account/firstname", consumes = {"text/plain"})
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void changeFirstname(@RequestBody String firstname) {
         if (firstname == null) {
             throw new IllegalArgumentException("Firstname can not be null");
         }
-
         final User user = Utils.getUser(true);
         user.setFirstname(firstname);
         userService.updateUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "account/lastname", consumes = {"text/plain"})
+    @PutMapping(value = "account/lastname", consumes = {"text/plain"})
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void changeLastName(@RequestBody String lastname) {
         if (lastname == null) {
             throw new IllegalArgumentException("lastname can not be null");
-
         }
         final User user = Utils.getUser(true);
         user.setLastname(lastname);
         userService.updateUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "account/locale", consumes = {"text/plain"})
+    @PutMapping(value = "account/locale", consumes = {"text/plain"})
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void changeLanguage(@RequestBody String language) {
         if (language == null) {
             throw new IllegalArgumentException("language can not be null");
-
         }
-
         final User user = Utils.getUser(true);
         user.setLocale(language);
         userService.updateUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "account")
+    @DeleteMapping(value = "account")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteUser() throws WiseMappingException {
         // Delete collaborations ...
@@ -132,4 +124,5 @@ public class AccountController extends BaseController {
         // Finally, delete user ...
         userService.removeUser(user);
     }
+
 }

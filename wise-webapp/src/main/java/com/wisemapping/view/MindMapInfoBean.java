@@ -20,8 +20,8 @@ package com.wisemapping.view;
 
 import com.wisemapping.model.Mindmap;
 
-
 public class MindMapInfoBean {
+
     private String title;
     private String description;
     private Mindmap mindMap;
@@ -29,7 +29,6 @@ public class MindMapInfoBean {
     public MindMapInfoBean(Mindmap map) {
         this.title = map.getTitle();
         this.description = map.getDescription();
-
         this.mindMap = map;
     }
 
@@ -54,7 +53,6 @@ public class MindMapInfoBean {
         this.description = description;
     }
 
-
     public Mindmap getMindMap() {
         if (mindMap != null) {
             mindMap.setTitle(title);
@@ -62,4 +60,5 @@ public class MindMapInfoBean {
         }
         return mindMap;
     }
+
 }

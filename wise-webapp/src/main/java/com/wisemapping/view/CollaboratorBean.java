@@ -23,6 +23,7 @@ import com.wisemapping.model.Collaborator;
 import com.wisemapping.model.User;
 
 public class CollaboratorBean {
+
     private final CollaborationRole collaborationRole;
     private final boolean isUser;
     private final Collaborator collaborator;
@@ -58,4 +59,5 @@ public class CollaboratorBean {
     public int getId() {
         return collaborator.getId();
     }
+
 }

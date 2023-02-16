@@ -36,14 +36,16 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.*;
 
-public class UserServiceImpl
-        implements UserService {
+public class UserServiceImpl implements UserService {
+
     private UserManager userManager;
     private MindmapService mindmapService;
     private NotificationService notificationService;
     private MessageSource messageSource;
     private VelocityEngineWrapper velocityEngineWrapper;
 	private GoogleService googleService;
+
+    private Random rn = new Random();
 
     @Override
     public void activateAccount(long code)
@@ -98,9 +100,8 @@ public class UserServiceImpl
     }
 
     private int rand(int lo, int hi) {
-        java.util.Random rn = new java.util.Random();
         int n = hi - lo + 1;
-        int i = rn.nextInt() % n;
+        int i = this.rn.nextInt() % n;
         if (i < 0)
             i = -i;
         return lo + i;
@@ -206,13 +207,11 @@ public class UserServiceImpl
 		return existingUser;
 	}
 
-
-
     public Mindmap buildTutorialMindmap(@NotNull String firstName) throws InvalidMindmapException {
         //To change body of created methods use File | Settings | File Templates.
         final Locale locale = LocaleContextHolder.getLocale();
         Mindmap result = new Mindmap();
-        final Map<String, Object> model = new HashMap<String, Object>();
+        final Map<String, Object> model = new HashMap<>();
         model.put("messages", messageSource);
         model.put("noArgs", new Object[]{});
         model.put("locale", locale);
@@ -279,4 +278,5 @@ public class UserServiceImpl
         // TODO Auto-generated method stub
         return null;
     }
+
 }

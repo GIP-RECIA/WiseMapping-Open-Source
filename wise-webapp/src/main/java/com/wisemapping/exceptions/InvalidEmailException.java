@@ -18,13 +18,10 @@
 
 package com.wisemapping.exceptions;
 
-
-import org.springframework.lang.Nullable;
-
 import javax.validation.constraints.NotNull;
 
-public class InvalidEmailException
-        extends ClientException {
+public class InvalidEmailException extends ClientException {
+
     private static final String EMAIL_IS_INVALID = "INVALID_EMAIL_ADDRESS";
 
     public InvalidEmailException(@NotNull String emails) {
@@ -36,4 +33,5 @@ public class InvalidEmailException
     protected String getMsgBundleKey() {
         return EMAIL_IS_INVALID;
     }
+
 }

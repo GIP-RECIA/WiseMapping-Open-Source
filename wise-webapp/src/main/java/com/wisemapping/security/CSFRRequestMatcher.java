@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.security;
 
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -41,4 +42,5 @@ public class CSFRRequestMatcher implements RequestMatcher {
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
+
 }

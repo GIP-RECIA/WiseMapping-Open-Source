@@ -18,13 +18,12 @@
 
 package com.wisemapping.exceptions;
 
-
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 
-public class InvalidMindmapException
-        extends ClientException {
+public class InvalidMindmapException extends ClientException {
+
     private static final String EMPTY_MINDMAP = "MINDMAP_EMPTY_ERROR";
     private static final String INVALID_MINDMAP_FORMAT = "INVALID_MINDMAP_FORMAT";
     private static final String TOO_BIG_MINDMAP = "TOO_BIG_MINDMAP";
@@ -36,15 +35,15 @@ public class InvalidMindmapException
         this.bundleKey = bundleKey;
     }
 
-    static public InvalidMindmapException emptyMindmap() {
+    public static InvalidMindmapException emptyMindmap() {
         return new InvalidMindmapException(EMPTY_MINDMAP, "<empty string>");
     }
 
-    static public InvalidMindmapException invalidFormat(@Nullable String xmlDoc) {
+    public static InvalidMindmapException invalidFormat(@Nullable String xmlDoc) {
         return new InvalidMindmapException(INVALID_MINDMAP_FORMAT, xmlDoc);
     }
 
-    static public InvalidMindmapException tooBigMindnap(int numberOfTopics) {
+    public static InvalidMindmapException tooBigMindnap(int numberOfTopics) {
         return new InvalidMindmapException(TOO_BIG_MINDMAP, "<too-big " + numberOfTopics + ">");
     }
 
@@ -53,4 +52,5 @@ public class InvalidMindmapException
     protected String getMsgBundleKey() {
         return bundleKey;
     }
+
 }

@@ -63,4 +63,5 @@ public interface MindmapManager {
     void purgeHistory(int mapId) throws IOException;
 
     List<Mindmap> findMindmapByUser(User user);
+
 }

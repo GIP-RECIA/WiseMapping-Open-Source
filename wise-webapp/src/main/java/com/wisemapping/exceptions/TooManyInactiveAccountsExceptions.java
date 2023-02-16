@@ -18,11 +18,10 @@
 
 package com.wisemapping.exceptions;
 
-
 import javax.validation.constraints.NotNull;
 
-public class TooManyInactiveAccountsExceptions
-        extends ClientException {
+public class TooManyInactiveAccountsExceptions extends ClientException {
+
     private static final String TOO_MANY_INACTIVE_ACCOUNTS = "TOO_MANY_INACTIVE_ACCOUNTS";
 
     public TooManyInactiveAccountsExceptions(@NotNull long accounts) {
@@ -34,4 +33,5 @@ public class TooManyInactiveAccountsExceptions
     protected String getMsgBundleKey() {
         return TOO_MANY_INACTIVE_ACCOUNTS;
     }
+
 }

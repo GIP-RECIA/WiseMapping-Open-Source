@@ -22,7 +22,6 @@ import com.wisemapping.exceptions.AccessDeniedSecurityException;
 import com.wisemapping.exceptions.InvalidMindmapException;
 import com.wisemapping.exceptions.WiseMappingException;
 import com.wisemapping.util.ZipUtils;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
@@ -191,7 +190,6 @@ public class Mindmap implements Serializable {
         return isPublic;
     }
 
-
     public void setPublic(boolean isPublic) {
         this.isPublic = isPublic;
     }
@@ -245,7 +243,6 @@ public class Mindmap implements Serializable {
         xml = xml.trim();
         return xml;
     }
-
 
     public String getDescription() {
         return description;
@@ -310,7 +307,6 @@ public class Mindmap implements Serializable {
     }
 
     public static String getDefaultMindmapXml(@NotNull final String title) {
-
         final StringBuilder result = new StringBuilder();
         result.append("<map version=\"tango\">");
         result.append("<topic central=\"true\" text=\"");
@@ -319,7 +315,7 @@ public class Mindmap implements Serializable {
         return result.toString();
     }
 
-    static private String escapeXmlAttribute(String attValue) {
+    private static String escapeXmlAttribute(String attValue) {
         // Hack: Find out of the box function.
         String result = attValue.replace("&", "&amp;");
         result = result.replace("<", "&lt;");
@@ -361,4 +357,5 @@ public class Mindmap implements Serializable {
     public void removeLabel(@NotNull final Label label) {
         this.labels.remove(label);
     }
+
 }

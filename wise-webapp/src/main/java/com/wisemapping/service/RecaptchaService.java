@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.service;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,14 +35,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class RecaptchaService {
 
-    final private static Logger logger = LogManager.getLogger();
-    final private static String GOOGLE_RECAPTCHA_VERIFY_URL =
-            "https://www.google.com/recaptcha/api/siteverify";
+    private static final Logger logger = LogManager.getLogger();
+    private static final String GOOGLE_RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 
-    private final static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     public static final String CATCH_ERROR_CODE_TIMEOUT_OR_DUPLICATE = "timeout-or-duplicate";
     public static final String CATCHA_ERROR_CODE_INPUT_RESPONSE = "invalid-input-response";
     private String recaptchaSecret;
@@ -56,9 +55,9 @@ public class RecaptchaService {
                 .build();
 
         // Add logs ...
-        logger.debug("Response from remoteip: " + ip);
-        logger.debug("Response from recaptchaSecret: " + recaptchaSecret);
-        logger.debug("Response from recaptcha: " + recaptcha);
+        logger.debug("Response from remoteip: {}", ip);
+        logger.debug("Response from recaptchaSecret: {}", recaptchaSecret);
+        logger.debug("Response from recaptcha: {}", recaptcha);
 
         String result = StringUtils.EMPTY;
         try {
@@ -70,7 +69,7 @@ public class RecaptchaService {
                     .asBytes();
 
             final Map responseBody = objectMapper.readValue(body, HashMap.class);
-            logger.debug("Response from recaptcha after parse: " + responseBody);
+            logger.debug("Response from recaptcha after parse: {}", responseBody);
 
             final Boolean success = (Boolean) responseBody.get("success");
             if (success != null && !success) {
@@ -83,7 +82,7 @@ public class RecaptchaService {
                     result = Messages.CAPTCHA_INVALID_INPUT_RESPONSE;
                 } else {
                     result = Messages.CAPTCHA_LOADING_ERROR;
-                    logger.error("Unexpected error during catch resolution:" + errorCodes);
+                    logger.error("Unexpected error during catch resolution: {}", errorCodes);
                 }
             }
         } catch (IOException e) {
@@ -91,12 +90,12 @@ public class RecaptchaService {
             result = e.getMessage();
         }
 
-        logger.debug("Captcha Result:" + result);
+        logger.debug("Captcha Result: {}", result);
         return result;
-
     }
 
     public void setRecaptchaSecret(String recaptchaSecret) {
         this.recaptchaSecret = recaptchaSecret;
     }
+
 }

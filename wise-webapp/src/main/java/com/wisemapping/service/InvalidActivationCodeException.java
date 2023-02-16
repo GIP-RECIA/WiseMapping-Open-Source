@@ -20,11 +20,10 @@ package com.wisemapping.service;
 
 import com.wisemapping.exceptions.WiseMappingException;
 
-public class InvalidActivationCodeException
-    extends WiseMappingException
-{
-    public InvalidActivationCodeException(String msg)
-    {
+public class InvalidActivationCodeException extends WiseMappingException {
+
+    public InvalidActivationCodeException(String msg) {
         super(msg);
     }
+
 }

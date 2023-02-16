@@ -20,10 +20,10 @@ package com.wisemapping.service;
 
 import com.wisemapping.exceptions.WiseMappingException;
 
-public class InvalidAuthSchemaException extends WiseMappingException
-{
-    public InvalidAuthSchemaException(String msg)
-    {
+public class InvalidAuthSchemaException extends WiseMappingException {
+
+    public InvalidAuthSchemaException(String msg) {
         super(msg);
     }
+
 }

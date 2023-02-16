@@ -20,13 +20,12 @@ package com.wisemapping.view;
 
 import com.wisemapping.model.User;
 
-public class UserBean
-        extends User {
+public class UserBean extends User {
+
     private String retypePassword;
     private String captcha;
 
     public UserBean() {
-
     }
 
     public UserBean(User model) {
@@ -52,4 +51,5 @@ public class UserBean
     public void setCaptcha(String captcha) {
         this.captcha = captcha;
     }
+
 }

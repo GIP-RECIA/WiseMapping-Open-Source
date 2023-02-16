@@ -42,8 +42,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-final public class NotificationService {
-    final private static Logger logger = LogManager.getLogger();
+public final class NotificationService {
+
+    private static final Logger logger = LogManager.getLogger();
     private ResourceBundleMessageSource messageSource;
 
     @Autowired
@@ -51,7 +52,8 @@ final public class NotificationService {
 
     private String baseUrl;
 
-    public void newCollaboration(@NotNull Collaboration collaboration, @NotNull Mindmap mindmap, @NotNull User user, @Nullable String message) {
+    public void newCollaboration(@NotNull Collaboration collaboration, @NotNull Mindmap mindmap,
+                                 @NotNull User user, @Nullable String message) {
         final Locale locale = LocaleContextHolder.getLocale();
 
         try {
@@ -62,7 +64,8 @@ final public class NotificationService {
             final String collabEmail = collaboration.getCollaborator().getEmail();
 
             // Build the subject ...
-            final String subject = messageSource.getMessage("SHARE_MAP.EMAIL_SUBJECT", new Object[]{user.getFullName()}, locale);
+            final String subject =
+                    messageSource.getMessage("SHARE_MAP.EMAIL_SUBJECT", new Object[]{user.getFullName()}, locale);
 
             // Fill template properties ...
             final Map<String, Object> model = new HashMap<>();
@@ -72,7 +75,10 @@ final public class NotificationService {
             model.put("baseUrl", getBaseUrl());
             model.put("senderMail", user.getEmail());
             model.put("message", message);
-            model.put("doNotReplay", messageSource.getMessage("EMAIL.DO_NOT_REPLAY", new Object[]{mailer.getSupportEmail()}, locale));
+            model.put(
+                    "doNotReplay",
+                    messageSource.getMessage("EMAIL.DO_NOT_REPLAY", new Object[]{mailer.getSupportEmail()}, locale)
+            );
 
             // To resolve resources on templates ...
             model.put("noArg", new Object[]{});
@@ -83,7 +89,6 @@ final public class NotificationService {
         } catch (Exception e) {
             handleException(e);
         }
-
     }
 
     public void resetPassword(@NotNull User user, @NotNull String temporalPassword) {
@@ -91,11 +96,14 @@ final public class NotificationService {
 
         final String mailSubject = messageSource.getMessage("CHANGE_PASSWORD.EMAIL_SUBJECT", null, locale);
         final String messageTitle = messageSource.getMessage("CHANGE_PASSWORD.EMAIL_TITLE", null, locale);
-        final String messageBody = messageSource.getMessage("CHANGE_PASSWORD.EMAIL_BODY", new Object[]{temporalPassword, getBaseUrl()}, locale);
+        final String messageBody = messageSource.getMessage(
+                "CHANGE_PASSWORD.EMAIL_BODY",
+                new Object[]{temporalPassword, getBaseUrl()},
+                locale
+        );
 
         sendTemplateMail(user, mailSubject, messageTitle, messageBody);
     }
-
 
     public void passwordChanged(@NotNull User user) {
         final Locale locale = LocaleContextHolder.getLocale();
@@ -116,7 +124,8 @@ final public class NotificationService {
         sendTemplateMail(user, mailSubject, messageTitle, messageBody);
     }
 
-    private void sendTemplateMail(@NotNull User user, @NotNull String mailSubject, @NotNull String messageTitle, @NotNull String messageBody) {
+    private void sendTemplateMail(@NotNull User user, @NotNull String mailSubject, @NotNull String messageTitle,
+                                  @NotNull String messageBody) {
         final Locale locale = LocaleContextHolder.getLocale();
 
         try {
@@ -126,14 +135,17 @@ final public class NotificationService {
             model.put("messageBody", messageBody);
             model.put("baseUrl", getBaseUrl());
             model.put("supportEmail", mailer.getSupportEmail());
-            model.put("doNotReplay", messageSource.getMessage("EMAIL.DO_NOT_REPLAY", new Object[]{mailer.getSupportEmail()}, locale));
+            model.put(
+                    "doNotReplay",
+                    messageSource.getMessage("EMAIL.DO_NOT_REPLAY", new Object[]{mailer.getSupportEmail()}, locale)
+            );
 
             // To resolve resources on templates ...
             model.put("noArg", new Object[]{});
             model.put("messages", messageSource);
             model.put("locale", locale);
 
-            logger.debug("Email properties->" + model);
+            logger.debug("Email properties -> {}", model);
             mailer.sendEmail(mailer.getServerSenderEmail(), user.getEmail(), mailSubject, model, "baseLayout.vm");
         } catch (Exception e) {
             handleException(e);
@@ -150,7 +162,6 @@ final public class NotificationService {
         this.mailer = mailer;
     }
 
-
     public void activateAccount(@NotNull User user) {
         final Map<String, Object> model = new HashMap<>();
         model.put("user", user);
@@ -160,7 +171,7 @@ final public class NotificationService {
     public void sendRegistrationEmail(@NotNull User user) {
 //        throw new UnsupportedOperationException("Not implemented yet");
 //        try {
-//            final Map<String, String> model = new HashMap<String, String>();
+//            final Map<String, String> model = new HashMap<>();
 //            model.put("email", user.getEmail());
 ////            final String activationUrl = "http://wisemapping.com/c/activation?code=" + user.getActivationCode();
 ////            model.put("emailcheck", activationUrl);
@@ -171,7 +182,8 @@ final public class NotificationService {
 //        }
     }
 
-    public void reportJavascriptException(@Nullable Mindmap mindmap, @Nullable User user, @NotNull RestLogItem errorItem, @NotNull HttpServletRequest request) {
+    public void reportJavascriptException(@Nullable Mindmap mindmap, @Nullable User user,
+                                          @NotNull RestLogItem errorItem, @NotNull HttpServletRequest request) {
 
         final Map<String, String> summary = new HashMap<>();
         summary.put("JS-MSG", errorItem.getJsErrorMsg());
@@ -187,8 +199,8 @@ final public class NotificationService {
         summary.put("mapTitle", mindmap.getTitle());
 
         logError(summary, user, request);
-        logger.error("Unexpected editor mindmap => " + mindmapXML);
-        logger.error("Unexpected editor JS Stack => " + errorItem.getJsErrorMsg() + "-" + errorItem.getJsStack());
+        logger.error("Unexpected editor mindmap => {}", mindmapXML);
+        logger.error("Unexpected editor JS Stack => {} - {}", errorItem.getJsErrorMsg(), errorItem.getJsStack());
     }
 
     private void logError(@NotNull Map<String, String> model, @Nullable User user, @NotNull HttpServletRequest request) {
@@ -206,10 +218,11 @@ final public class NotificationService {
                 .map(key -> key + "=" + model.get(key))
                 .collect(Collectors.joining(", ", "{", "}"));
 
-        logger.error("Unexpected editor info => " + errorAsString);
+        logger.error("Unexpected editor info => {}", errorAsString);
     }
 
-    public void reportJavaException(@NotNull Throwable exception, @Nullable User user, @NotNull HttpServletRequest request) {
+    public void reportJavaException(@NotNull Throwable exception, @Nullable User user,
+                                    @NotNull HttpServletRequest request) {
         final Map<String, String> model = new HashMap<>();
         model.put("errorMsg", stackTraceToString(exception));
 
@@ -242,5 +255,3 @@ final public class NotificationService {
     }
 
 }
-
-

@@ -18,7 +18,6 @@
 
 package com.wisemapping.webmvc;
 
-
 import com.wisemapping.exceptions.AccessDeniedSecurityException;
 import com.wisemapping.exceptions.MapCouldNotFoundException;
 import com.wisemapping.exceptions.MapNonPublicException;
@@ -36,10 +35,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Locale;
@@ -67,7 +63,7 @@ public class MindmapController {
         return "mindmapList";
     }
 
-    @RequestMapping(value = "maps/{id}/edit", method = RequestMethod.GET)
+    @GetMapping(value = "maps/{id}/edit")
     public String showMindmapEditorPage(@PathVariable int id, @NotNull Model model) throws WiseMappingException {
         return showEditorPage(id, model, true);
     }
@@ -99,26 +95,27 @@ public class MindmapController {
         return "mindmapEditor";
     }
 
-    @RequestMapping(value = "maps/{id}/view", method = RequestMethod.GET)
+    @GetMapping(value = "maps/{id}/view")
     public String showMindmapViewerPage(@PathVariable int id, @NotNull Model model) throws WiseMappingException {
-        final String result = showPrintPage(id, model);
-        return result;
+        return showPrintPage(id, model);
     }
 
-    @RequestMapping(value = "maps/{id}/try", method = RequestMethod.GET)
+    @GetMapping(value = "maps/{id}/try")
     public String showMindmapTryPage(@PathVariable int id, @NotNull Model model) throws WiseMappingException {
-        return  showEditorPage(id, model, false);
+        return showEditorPage(id, model, false);
     }
 
-    @RequestMapping(value = "maps/{id}/{hid}/view", method = RequestMethod.GET)
-    public String showMindmapViewerRevPage(@PathVariable int id, @PathVariable int hid, @NotNull Model model) throws WiseMappingException {
+    @GetMapping(value = "maps/{id}/{hid}/view")
+    public String showMindmapViewerRevPage(@PathVariable int id, @PathVariable int hid, @NotNull Model model)
+            throws WiseMappingException {
         final String result = showPrintPage(id, model);
         model.addAttribute("hid", String.valueOf(hid));
         return result;
     }
 
     @RequestMapping(value = "maps/{id}/embed")
-    public ModelAndView showEmbeddedPage(@PathVariable int id, @RequestParam(required = false) Float zoom) throws MapCouldNotFoundException, MapNonPublicException, AccessDeniedSecurityException {
+    public ModelAndView showEmbeddedPage(@PathVariable int id, @RequestParam(required = false) Float zoom)
+            throws MapCouldNotFoundException, MapNonPublicException, AccessDeniedSecurityException {
         if (!mindmapService.isMindmapPublic(id)) {
             throw new MapNonPublicException("Map " + id + " is not public.");
         }
@@ -131,7 +128,7 @@ public class MindmapController {
         return view;
     }
 
-    @RequestMapping(value = "maps/{id}/public", method = RequestMethod.GET)
+    @GetMapping(value = "maps/{id}/public")
     public String showPublicViewPage(@PathVariable int id, @NotNull Model model) throws WiseMappingException {
         if (!mindmapService.isMindmapPublic(id)) {
             throw new MapNonPublicException("Map " + id + " is not public.");
@@ -140,14 +137,15 @@ public class MindmapController {
     }
 
     @Deprecated
-    @RequestMapping(value = "publicView", method = RequestMethod.GET)
+    @GetMapping(value = "publicView")
     public String showPublicViewPageLegacy(@RequestParam(required = true) int mapId) {
         return "redirect:maps/" + mapId + "/public";
     }
 
     @Deprecated
-    @RequestMapping(value = "embeddedView", method = RequestMethod.GET)
-    public String showPublicViewLegacyPage(@RequestParam(required = true) int mapId, @RequestParam(required = false) int zoom) {
+    @GetMapping(value = "embeddedView")
+    public String showPublicViewLegacyPage(@RequestParam(required = true) int mapId,
+                                           @RequestParam(required = false) int zoom) {
         return "redirect:maps/" + mapId + "/embed?zoom=" + zoom;
     }
 
@@ -171,4 +169,5 @@ public class MindmapController {
         final Mindmap mindmap = findMindmap(mapId);
         return new MindMapBean(mindmap, Utils.getUser());
     }
+
 }

@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.validator;
 
 import com.wisemapping.model.Constants;
@@ -47,7 +48,6 @@ public class LabelValidator implements Validator {
             errors.rejectValue("map", "error.not-specified", null, "Value required.");
         } else {
             validateLabel(label, errors);
-
         }
     }
 
@@ -69,4 +69,5 @@ public class LabelValidator implements Validator {
             errors.rejectValue("title", Messages.LABEL_TITLE_ALREADY_EXISTS);
         }
     }
+
 }

@@ -15,6 +15,7 @@ import com.wisemapping.service.http.HttpMethod;
 
 @Service
 public class GoogleService {
+
 	private HttpInvoker httpInvoker;
 	private String optinConfirmUrl;
 	private String accountBasicDataUrl;
@@ -56,7 +57,7 @@ public class GoogleService {
 	}
 
 	private Map<String, String> getHeaders(String token) {
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 		headers.put("Content-type", "application/json");
 		headers.put("Authorization", "Bearer " + token);
 		return headers;
@@ -74,7 +75,7 @@ public class GoogleService {
 	}
 
 	private Map<String, String> getOptinConfirmBody(String code) {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = new HashMap<>();
 		result.put("client_id", clientId);
 		result.put("client_secret", clientSecret);
 		result.put("code", code);

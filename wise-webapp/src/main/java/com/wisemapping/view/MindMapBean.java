@@ -32,6 +32,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class MindMapBean {
+
     private final Mindmap mindmap;
     private final List<CollaboratorBean> viewers;
     private final List<CollaboratorBean> collaborators;
@@ -92,7 +93,7 @@ public class MindMapBean {
     }
 
     private List<CollaboratorBean> filterCollaboratorBy(Set<Collaboration> source, CollaborationRole role) {
-        List<CollaboratorBean> col = new ArrayList<CollaboratorBean>();
+        List<CollaboratorBean> col = new ArrayList<>();
         if (source != null) {
             for (Collaboration mu : source) {
                 if (mu.getRole() == role) {
@@ -167,7 +168,6 @@ public class MindMapBean {
         final Optional<Collaboration> collaboration = this.mindmap.findCollaboration(collaborator);
         return collaboration.map(value -> value.getRole().getLabel()).orElse("none");
     }
-
 
     public Mindmap getDelegated() {
         return mindmap;

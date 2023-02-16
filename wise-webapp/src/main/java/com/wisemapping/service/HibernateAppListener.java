@@ -24,15 +24,14 @@ import javax.servlet.ServletContextListener;
 public class HibernateAppListener implements ServletContextListener {
 
     public void	contextInitialized(ServletContextEvent ce) {
-
         try  {
-
             Class.forName("tomcatJndi.HibernateUtil").newInstance();
-
-        }         catch (Exception e)  {}
+        } catch (Exception e) {
+        }
     }
 
     /* Application Shutdown	Event */
-    public void	contextDestroyed(ServletContextEvent ce)
-    { }
+    public void	contextDestroyed(ServletContextEvent ce) {
+    }
+
 }

@@ -25,8 +25,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class RequestPropertiesInterceptor implements HandlerInterceptor {
+
     @Value("${google.analytics.enabled}")
     private Boolean analyticsEnabled;
 
@@ -58,7 +58,8 @@ public class RequestPropertiesInterceptor implements HandlerInterceptor {
     private String googleOauth2Url;
 
     @Override
-    public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, Object object) throws Exception {
+    public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, Object object)
+            throws Exception {
 
         request.setAttribute("google.analytics.enabled", analyticsEnabled);
         request.setAttribute("google.analytics.account", analyticsAccount);
@@ -81,4 +82,5 @@ public class RequestPropertiesInterceptor implements HandlerInterceptor {
         request.setAttribute("site.baseurl", siteUrl);
         return true;
     }
+
 }

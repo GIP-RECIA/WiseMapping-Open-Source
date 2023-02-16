@@ -15,13 +15,13 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.wisemapping.model;
 
+package com.wisemapping.model;
 
 import com.wisemapping.exceptions.InvalidMindmapException;
 import org.jetbrains.annotations.Nullable;
 
-abstract public class MindmapUtils {
+public abstract class MindmapUtils {
 
     private static final int MAX_SUPPORTED_NODES = 4000;
 
@@ -46,6 +46,6 @@ abstract public class MindmapUtils {
         if (numberOfTopics > MAX_SUPPORTED_NODES) {
             throw InvalidMindmapException.tooBigMindnap(numberOfTopics);
         }
-
     }
+
 }

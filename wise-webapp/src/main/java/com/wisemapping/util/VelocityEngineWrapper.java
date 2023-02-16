@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.util;
 
 import org.apache.commons.collections.ExtendedProperties;
@@ -23,6 +24,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.jetbrains.annotations.NotNull;
 
 public class VelocityEngineWrapper {
+
     private final VelocityEngine velocityEngine;
 
     public VelocityEngineWrapper() {
@@ -45,4 +47,5 @@ public class VelocityEngineWrapper {
     public VelocityEngine getVelocityEngine() {
         return velocityEngine;
     }
+
 }

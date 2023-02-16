@@ -36,9 +36,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-public class UserManagerImpl
-        extends HibernateDaoSupport
-        implements UserManager {
+public class UserManagerImpl extends HibernateDaoSupport implements UserManager {
 
     private PasswordEncoder passwordEncoder;
 
@@ -50,7 +48,6 @@ public class UserManagerImpl
     public List<User> getAllUsers() {
         return currentSession().createQuery("from com.wisemapping.model.User user").list();
     }
-
 
     @Override
     @Nullable
@@ -66,7 +63,6 @@ public class UserManagerImpl
             user = users.get(0);
         }
         return user;
-
     }
 
     @Override
@@ -164,7 +160,6 @@ public class UserManagerImpl
         final List users = query.list();
 
         if (users != null && !users.isEmpty()) {
-
             assert users.size() == 1 : "More than one user with the same username!";
             user = (User) users.get(0);
         } else {
@@ -172,4 +167,5 @@ public class UserManagerImpl
         }
         return user;
     }
+
 }

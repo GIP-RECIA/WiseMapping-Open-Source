@@ -23,9 +23,8 @@ import com.wisemapping.model.User;
 import com.wisemapping.service.LockManager;
 import org.jetbrains.annotations.NotNull;
 
+public class LockException extends ClientException {
 
-public class LockException
-        extends ClientException {
     private static final String MSG_KEY = "MINDMAP_IS_LOCKED";
 
     public LockException(@NotNull String message) {
@@ -41,4 +40,5 @@ public class LockException
     protected String getMsgBundleKey() {
         return MSG_KEY;
     }
+
 }

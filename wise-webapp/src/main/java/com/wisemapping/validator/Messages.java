@@ -19,6 +19,7 @@
 package com.wisemapping.validator;
 
 public interface Messages {
+
     String EMAIL_ALREADY_EXIST = "EMAIL_ALREADY_EXIST";
     String NO_VALID_EMAIL_ADDRESS = "NO_VALID_EMAIL_ADDRESS";
     String FIELD_REQUIRED = "FIELD_REQUIRED";
@@ -29,4 +30,5 @@ public interface Messages {
 
     String CAPTCHA_TIMEOUT_OUT_DUPLICATE = "CAPTCHA_TIMEOUT_OUT_DUPLICATE";
     String CAPTCHA_INVALID_INPUT_RESPONSE = "CAPTCHA_INVALID_INPUT_RESPONSE";
+
 }

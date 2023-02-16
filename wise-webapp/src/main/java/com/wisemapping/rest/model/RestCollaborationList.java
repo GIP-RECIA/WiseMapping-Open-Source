@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +34,7 @@ public class RestCollaborationList {
     private String message;
 
     public RestCollaborationList() {
-        collaborations = new ArrayList<RestCollaboration>();
+        collaborations = new ArrayList<>();
     }
 
     public int getCount() {
@@ -43,7 +42,6 @@ public class RestCollaborationList {
     }
 
     public void setCount(int count) {
-
     }
 
     public List<RestCollaboration> getCollaborations() {
@@ -65,4 +63,5 @@ public class RestCollaborationList {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

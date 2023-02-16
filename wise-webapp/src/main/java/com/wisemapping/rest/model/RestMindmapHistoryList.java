@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +33,7 @@ public class RestMindmapHistoryList {
     private final List<RestMindmapHistory> changes;
 
     public RestMindmapHistoryList() {
-        changes = new ArrayList<RestMindmapHistory>();
+        changes = new ArrayList<>();
     }
 
     public int getCount() {
@@ -42,7 +41,6 @@ public class RestMindmapHistoryList {
     }
 
     public void setCount(int count) {
-
     }
 
     public List<RestMindmapHistory> getChanges() {
@@ -52,4 +50,5 @@ public class RestMindmapHistoryList {
     public void addHistory(@NotNull RestMindmapHistory history) {
         changes.add(history);
     }
+
 }

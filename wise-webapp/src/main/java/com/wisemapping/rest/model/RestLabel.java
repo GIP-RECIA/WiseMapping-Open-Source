@@ -76,4 +76,5 @@ public class RestLabel {
     public Label getDelegated() {
         return label;
     }
+
 }

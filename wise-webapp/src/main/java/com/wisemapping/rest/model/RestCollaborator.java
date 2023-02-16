@@ -24,9 +24,6 @@ import com.wisemapping.model.Collaborator;
 import com.wisemapping.util.TimeUtils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 
 @JsonAutoDetect(
@@ -40,17 +37,14 @@ public class RestCollaborator {
     private final Collaborator collaborator;
 
     public RestCollaborator(@NotNull Collaborator collaborator) {
-
         this.collaborator = collaborator;
     }
 
     public String getCreationDate() {
-
         return TimeUtils.toISO8601(collaborator.getCreationDate().getTime());
     }
 
     public void setCreationDate(Calendar creationDate) {
-
     }
 
     public String getEmail() {
@@ -58,7 +52,6 @@ public class RestCollaborator {
     }
 
     public void setEmail(String email) {
-
     }
 
 }

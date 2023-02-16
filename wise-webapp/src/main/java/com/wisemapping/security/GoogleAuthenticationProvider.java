@@ -58,5 +58,4 @@ public class GoogleAuthenticationProvider implements org.springframework.securit
 		return PreAuthenticatedAuthenticationToken.class.isAssignableFrom(authentication);
 	}
 
-
 }

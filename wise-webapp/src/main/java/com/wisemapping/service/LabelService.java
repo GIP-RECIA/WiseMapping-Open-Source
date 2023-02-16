@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.service;
 
 import com.wisemapping.exceptions.WiseMappingException;
@@ -37,4 +38,5 @@ public interface LabelService {
     Label getLabelByTitle(@NotNull String title, @NotNull final User user);
 
     void removeLabel(@NotNull final Label label, @NotNull final User user) throws WiseMappingException;
+
 }

@@ -28,8 +28,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-public class UserValidator
-        implements Validator {
+public class UserValidator implements Validator {
 
     private UserService userService;
     public boolean supports(final Class clazz) {
@@ -77,4 +76,5 @@ public class UserValidator
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+
 }

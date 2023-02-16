@@ -18,7 +18,6 @@
 
 package com.wisemapping.security;
 
-
 import com.wisemapping.model.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,14 +26,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 public class AuthenticationProvider implements org.springframework.security.authentication.AuthenticationProvider {
+
     private UserDetailsService userDetailsService;
     private PasswordEncoder encoder;
 
     @Override()
     public Authentication authenticate(@NotNull final Authentication auth) throws AuthenticationException {
-
         // All your user authentication needs
         final String email = auth.getName();
 
@@ -71,4 +69,5 @@ public class AuthenticationProvider implements org.springframework.security.auth
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
+
 }

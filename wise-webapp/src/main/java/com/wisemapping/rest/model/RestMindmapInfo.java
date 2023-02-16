@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -55,7 +54,6 @@ public class RestMindmapInfo {
 
     public RestMindmapInfo() {
         this(new Mindmap(), null);
-
     }
 
     public RestMindmapInfo(@NotNull Mindmap mindmap, @Nullable Collaborator collaborator) {
@@ -133,7 +131,6 @@ public class RestMindmapInfo {
 
     public String getRole() {
         final User user = Utils.getUser();
-        String result;
         final Optional<Collaboration> collaboration = mindmap.findCollaboration(user);
         return  collaboration.map(value -> value.getRole().getLabel()).orElse(ROLE_NONE);
     }
@@ -167,11 +164,11 @@ public class RestMindmapInfo {
     }
 
     public void setStarred(boolean value) {
-
     }
 
     @JsonIgnore
     public Mindmap getDelegated() {
         return this.mindmap;
     }
+
 }

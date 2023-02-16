@@ -26,8 +26,7 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "ACCESS_AUDITORY")
-public class AccessAuditory
-        implements Serializable {
+public class AccessAuditory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,4 +65,5 @@ public class AccessAuditory
     public User getUser() {
         return this.user;
     }
+
 }

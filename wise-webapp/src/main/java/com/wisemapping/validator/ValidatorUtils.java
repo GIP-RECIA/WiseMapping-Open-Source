@@ -20,17 +20,17 @@ package com.wisemapping.validator;
 
 import org.springframework.validation.ValidationUtils;
 
-public class ValidatorUtils
-    extends ValidationUtils
-{
-    public static void rejectIfExceeded(org.springframework.validation.Errors errors,
-                                        java.lang.String title,
-                                        java.lang.String message,
-                                        String value,
-                                        int limit)
-    {
+public class ValidatorUtils extends ValidationUtils {
+
+    public static void rejectIfExceeded(
+            org.springframework.validation.Errors errors,
+            java.lang.String title,
+            java.lang.String message,
+            String value,
+            int limit) {
        if (value != null && value.length() > limit) {
             errors.rejectValue(title, "field.max.length",message);
         }
     }
+
 }

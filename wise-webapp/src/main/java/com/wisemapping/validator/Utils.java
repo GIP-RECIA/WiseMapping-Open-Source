@@ -25,13 +25,13 @@ import org.springframework.validation.ValidationUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-final public class Utils {
+public final class Utils {
+
     //Set the email emailPattern string
 
-    static private final Pattern emailPattern = Pattern.compile(".+@.+\\.[a-z]+");
+    private static final Pattern emailPattern = Pattern.compile(".+@.+\\.[a-z]+");
 
     private Utils() {
-
     }
 
     static void validateEmailAddress(final String email, final Errors errors) {
@@ -56,4 +56,5 @@ final public class Utils {
         }
         return result;
     }
+
 }

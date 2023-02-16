@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.rest;
 
 import com.wisemapping.exceptions.LabelCouldNotFoundException;
@@ -45,8 +46,7 @@ public class LabelController extends BaseController {
     @Autowired
     private LabelService labelService;
 
-
-    @RequestMapping(method = RequestMethod.POST, value = "/labels", consumes = {"application/json"})
+    @PostMapping(value = "/labels", consumes = {"application/json"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createLabel(@RequestBody RestLabel restLabel, @NotNull HttpServletResponse response, @RequestParam(required = false) String title) throws WiseMappingException {
         // Overwrite title if it was specified by parameter.
@@ -64,7 +64,7 @@ public class LabelController extends BaseController {
         response.setHeader("ResourceId", Long.toString(label.getId()));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/labels", produces = {"application/json"})
+    @GetMapping(value = "/labels", produces = {"application/json"})
     public RestLabelList retrieveList() {
         final User user = Utils.getUser();
         assert user != null;
@@ -72,7 +72,7 @@ public class LabelController extends BaseController {
         return new RestLabelList(all);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/labels/{id}")
+    @DeleteMapping(value = "/labels/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteLabelById(@PathVariable int id) throws WiseMappingException {
         final User user = Utils.getUser();
@@ -100,4 +100,5 @@ public class LabelController extends BaseController {
             throw new ValidationException(result);
         }
     }
+
 }

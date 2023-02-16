@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.mail;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,8 +26,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class NotifierFilter {
+
     public static final int MAX_CACHE_ENTRY = 500;
-    private final Map<String, String> emailByMd5 = Collections.synchronizedMap(new LinkedHashMap<String, String>() {
+    private final Map<String, String> emailByMd5 = Collections.synchronizedMap(new LinkedHashMap<>() {
+        @Override
         protected boolean removeEldestEntry(Map.Entry eldest) {
             return size() > MAX_CACHE_ENTRY;
         }

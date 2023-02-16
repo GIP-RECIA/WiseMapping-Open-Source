@@ -23,4 +23,5 @@ class JsonHttpMessageNotReadableException extends org.springframework.http.conve
     public JsonHttpMessageNotReadableException(String msg, Exception cause) {
         super(msg, cause);
     }
+
 }

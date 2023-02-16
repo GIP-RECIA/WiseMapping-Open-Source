@@ -18,13 +18,11 @@
 
 package com.wisemapping.webmvc;
 
-
 import com.wisemapping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -34,17 +32,17 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "forgot-password", method = RequestMethod.GET)
+    @GetMapping(value = "forgot-password")
     public ModelAndView showResetPasswordPage() {
         return new ModelAndView("forgot-password");
     }
 
-    @RequestMapping(value = "registration-google", method = RequestMethod.GET)
+    @GetMapping(value = "registration-google")
     public ModelAndView processGoogleCallback() {
         return new ModelAndView("registration-google");
     }
 
-    @RequestMapping(value = "registration", method = RequestMethod.GET)
+    @GetMapping(value = "registration")
     public ModelAndView showRegistrationPage() {
         return new ModelAndView("registration");
     }

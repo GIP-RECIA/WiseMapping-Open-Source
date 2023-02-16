@@ -19,11 +19,10 @@
 package com.wisemapping.exceptions;
 
 import com.wisemapping.model.Collaborator;
-import com.wisemapping.model.User;
 import org.jetbrains.annotations.NotNull;
 
-public class AccessDeniedSecurityException
-        extends ClientException {
+public class AccessDeniedSecurityException extends ClientException {
+
     public static final String MSG_KEY = "ACCESS_HAS_BEEN_REVOKED";
 
     public AccessDeniedSecurityException(@NotNull String msg) {
@@ -39,4 +38,5 @@ public class AccessDeniedSecurityException
     protected String getMsgBundleKey() {
         return MSG_KEY;
     }
+
 }

@@ -30,7 +30,6 @@ import org.springframework.validation.Validator;
 
 public class MapInfoValidator implements Validator {
 
-
     private MindmapService mindmapService;
 
     public boolean supports(final Class clazz) {
@@ -38,7 +37,6 @@ public class MapInfoValidator implements Validator {
     }
 
     public MapInfoValidator() {
-
     }
 
     public MapInfoValidator(@NotNull MindmapService service) {
@@ -48,16 +46,13 @@ public class MapInfoValidator implements Validator {
     public void validate(Object obj, @NotNull Errors errors) {
         final Mindmap map = (Mindmap) obj;
 
-
         if (map == null) {
             errors.rejectValue("map", "error.not-specified", null, "Value required.");
         } else {
-
             final String title = map.getTitle();
             final String desc = map.getDescription();
             validateMapInfo(errors, title, desc);
         }
-
     }
 
     protected void validateMapInfo(Errors errors, String title, String desc) {
@@ -93,4 +88,5 @@ public class MapInfoValidator implements Validator {
     public void setMindmapService(MindmapService mindmapService) {
         this.mindmapService = mindmapService;
     }
+
 }

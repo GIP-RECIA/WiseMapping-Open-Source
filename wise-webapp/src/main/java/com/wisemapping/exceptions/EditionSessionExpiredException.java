@@ -20,13 +20,11 @@ package com.wisemapping.exceptions;
 
 import org.jetbrains.annotations.NotNull;
 
-public class EditionSessionExpiredException
-    extends ClientException
-{
+public class EditionSessionExpiredException extends ClientException {
+
     private static final String MSG_KEY = "MINDMAP_TIMESTAMP_OUTDATED";
 
-    public EditionSessionExpiredException(@NotNull String msg)
-    {
+    public EditionSessionExpiredException(@NotNull String msg) {
         super(msg,Severity.INFO);
     }
 
@@ -35,4 +33,5 @@ public class EditionSessionExpiredException
     protected String getMsgBundleKey() {
         return MSG_KEY;
     }
+
 }

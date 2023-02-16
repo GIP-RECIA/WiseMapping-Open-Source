@@ -28,13 +28,13 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 @Table(name = "COLLABORATOR")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Collaborator implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -102,14 +102,11 @@ public class Collaborator implements Serializable {
 
     @Override
     public int hashCode() {
-        int id = this.getId();
-        String email = this.getEmail();
+        int result = this.getId() ^ (this.getId() >>> 32);
+        result = 31 * result + ( this.getEmail()!= null ? this.getEmail().hashCode() : 0);
 
-        int result = id ^ (id >>> 32);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
-
 
     public boolean identityEquality(@Nullable Collaborator that) {
         if (this == that) {

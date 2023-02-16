@@ -23,4 +23,5 @@ public interface LabelManager {
     Label getLabelByTitle(@NotNull final String title, @NotNull final User user);
 
     void removeLabel(@NotNull final Label label);
+
 }

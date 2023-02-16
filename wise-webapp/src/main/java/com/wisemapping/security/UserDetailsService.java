@@ -18,7 +18,6 @@
 
 package com.wisemapping.security;
 
-
 import com.wisemapping.model.User;
 import com.wisemapping.service.UserService;
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +25,8 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
-public class UserDetailsService
-        implements org.springframework.security.core.userdetails.UserDetailsService{
     private UserService userService;
     private String adminUser;
 

@@ -28,9 +28,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "USER")
 @PrimaryKeyJoinColumn(name = "colaborator_id")
-public class User
-        extends Collaborator
-        implements Serializable {
+public class User extends Collaborator implements Serializable {
 
     private String firstname;
     private String lastname;
@@ -192,4 +190,5 @@ public class User
                 ", lastname='" + lastname + '\'' +
                 "', email = '" + this.getEmail() + "}";
     }
+
 }

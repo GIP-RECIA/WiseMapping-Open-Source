@@ -9,5 +9,5 @@ public class HttpInvokerException extends Exception {
 	public HttpInvokerException(String message, Throwable cause) {
 		super(message, cause);
 	}
-	
+
 }

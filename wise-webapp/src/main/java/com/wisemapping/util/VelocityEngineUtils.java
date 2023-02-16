@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.util;
 
 import org.apache.commons.logging.Log;
@@ -28,6 +29,7 @@ import java.io.Writer;
 import java.util.Map;
 
 public class VelocityEngineUtils {
+
     private static final Log logger = LogFactory.getLog(VelocityEngineUtils.class);
 
     public static void mergeTemplate(
@@ -52,4 +54,5 @@ public class VelocityEngineUtils {
         mergeTemplate(velocityEngine, templateLocation, model, result);
         return result.toString();
     }
+
 }

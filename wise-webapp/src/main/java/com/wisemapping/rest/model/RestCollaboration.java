@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.wisemapping.model.Collaboration;
 import com.wisemapping.model.CollaborationRole;
@@ -41,7 +40,6 @@ public class RestCollaboration {
     }
 
     public RestCollaboration() {
-
     }
 
     public void setRole(@NotNull final String value) {
@@ -51,7 +49,6 @@ public class RestCollaboration {
         // Only check ...
         CollaborationRole.valueOf(value.toUpperCase());
         role = value;
-
     }
 
     public int getId() {
@@ -69,4 +66,5 @@ public class RestCollaboration {
     public void setEmail(@NotNull String email) {
         this.email = email;
     }
+
 }

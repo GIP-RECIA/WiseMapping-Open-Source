@@ -17,7 +17,6 @@
 
 */
 
-
 package com.wisemapping.rest;
 
 import com.wisemapping.model.Mindmap;
@@ -69,7 +68,7 @@ public abstract class MindmapFilter {
         this.id = id;
     }
 
-    static public MindmapFilter parse(@Nullable final String valueStr) {
+    public static MindmapFilter parse(@Nullable final String valueStr) {
         MindmapFilter result = null;
         if (valueStr != null) {
             for (MindmapFilter value : MindmapFilter.values) {

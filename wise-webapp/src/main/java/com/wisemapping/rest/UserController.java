@@ -48,6 +48,7 @@ import java.util.List;
 @Controller
 @CrossOrigin
 public class UserController extends BaseController {
+
 	@Qualifier("userService")
 	@Autowired
 	private UserService userService;
@@ -60,7 +61,7 @@ public class UserController extends BaseController {
 	private AuthenticationManager authManager;
 
 	@Value("${google.recaptcha2.enabled}")
-	private Boolean recatchaEnabled;
+	private boolean recatchaEnabled;
 
 	@Value("${accounts.exclusion.domain:''}")
 	private String domainBanExclusion;
@@ -68,18 +69,18 @@ public class UserController extends BaseController {
 	private static final Logger logger = LogManager.getLogger();
 	private static final String REAL_IP_ADDRESS_HEADER = "X-Real-IP";
 
-	@RequestMapping(method = RequestMethod.POST, value = "/users", produces = { "application/json" })
+	@PostMapping(value = "/users", produces = { "application/json" })
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public void registerUser(@RequestBody RestUserRegistration registration, @NotNull HttpServletRequest request,
 			@NotNull HttpServletResponse response) throws WiseMappingException, BindException {
-		logger.debug("Register new user:" + registration.getEmail());
+		logger.debug("Register new user: {}", registration.getEmail());
 
 		// If tomcat is behind a reverse proxy, ip needs to be found in other header.
 		String remoteIp = request.getHeader(REAL_IP_ADDRESS_HEADER);
 		if (remoteIp == null || remoteIp.isEmpty()) {
 			remoteIp = request.getRemoteAddr();
 		}
-		logger.debug("Remote address" + remoteIp);
+		logger.debug("Remote address {}", remoteIp);
 
 		verify(registration, remoteIp);
 
@@ -94,7 +95,7 @@ public class UserController extends BaseController {
 		response.setHeader("Location", "/service/users/" + user.getId());
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/users/resetPassword", produces = { "application/json" })
+	@PutMapping(value = "/users/resetPassword", produces = { "application/json" })
 	@ResponseStatus(value = HttpStatus.OK)
 	public RestResetPasswordResponse resetPassword(@RequestParam String email) throws InvalidAuthSchemaException, EmailNotExistsException {
 		try {
@@ -140,4 +141,5 @@ public class UserController extends BaseController {
 							+ emailDomain);
 		}
 	}
+
 }

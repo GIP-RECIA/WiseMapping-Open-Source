@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.util;
 
 import org.jetbrains.annotations.Nullable;
@@ -23,8 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-final public class TimeUtils
-{
+public final class TimeUtils {
+
     private static final SimpleDateFormat sdf;
     static {
         sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");

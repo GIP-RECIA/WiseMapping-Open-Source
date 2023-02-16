@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-final public class Utils {
+public final class Utils {
     private Utils() {
     }
 
@@ -38,17 +38,17 @@ final public class Utils {
     public static User getUser(boolean forceCheck) {
         User result = null;
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.getDetails() != null)
-        {
+        if (auth != null && auth.getDetails() != null) {
             final Object principal = auth.getPrincipal();
             if (principal != null && principal instanceof UserDetails) {
                 result = ((UserDetails)principal).getUser();
             }
         }
 
-        if(result==null && forceCheck){
+        if (result == null && forceCheck) {
             throw new IllegalStateException("User could not be retrieved");
         }
         return result;
     }
+
 }

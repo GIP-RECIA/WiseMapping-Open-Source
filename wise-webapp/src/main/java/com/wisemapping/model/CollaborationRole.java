@@ -21,7 +21,8 @@ package com.wisemapping.model;
 public enum CollaborationRole {
     OWNER, EDITOR, VIEWER;
 
-    public String getLabel(){
+    public String getLabel() {
         return this.name().toLowerCase();
     }
+
 }

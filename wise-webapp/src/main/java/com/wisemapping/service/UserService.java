@@ -49,4 +49,5 @@ public interface UserService {
     void auditLogin(@NotNull User user);
     
     User getCasUserBy(String uid);
+
 }

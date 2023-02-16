@@ -20,11 +20,10 @@ package com.wisemapping.service;
 
 import com.wisemapping.exceptions.WiseMappingException;
 
-public class CollaborationException
-    extends WiseMappingException
-{
-    public CollaborationException(String msg)
-    {
+public class CollaborationException extends WiseMappingException {
+
+    public CollaborationException(String msg) {
         super(msg);
     }
+
 }

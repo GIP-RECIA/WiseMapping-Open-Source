@@ -28,7 +28,6 @@ import com.wisemapping.service.MindmapService;
 import com.wisemapping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +38,7 @@ import java.util.List;
 
 @Controller
 public class AdminController extends BaseController {
+
     @Qualifier("userService")
     @Autowired
     private UserService userService;
@@ -47,7 +47,7 @@ public class AdminController extends BaseController {
     @Autowired
     private MindmapService mindmapService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "admin/users/{id}", produces = {"application/json"})
+    @GetMapping(value = "admin/users/{id}", produces = {"application/json"})
     @ResponseBody
     public RestUser getUserById(@PathVariable int id) throws IOException {
         final User userBy = userService.getUserBy(id);
@@ -57,7 +57,7 @@ public class AdminController extends BaseController {
         return new RestUser(userBy);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "admin/users/email/{email:.+}", produces = {"application/json"})
+    @GetMapping(value = "admin/users/email/{email:.+}", produces = {"application/json"})
     @ResponseBody
     public RestUser getUserByEmail(@PathVariable String email) throws IOException {
         final User user = userService.getUserBy(email);
@@ -67,7 +67,7 @@ public class AdminController extends BaseController {
         return new RestUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "admin/users", consumes = {"application/json"}, produces = {"application/json"})
+    @PostMapping(value = "admin/users", consumes = {"application/json"}, produces = {"application/json"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createUser(@RequestBody RestUser user, HttpServletResponse response) throws WiseMappingException {
         if (user == null) {
@@ -104,7 +104,7 @@ public class AdminController extends BaseController {
         response.setHeader("Location", "/service/admin/users/" + user.getId());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "admin/users/{id}/password", consumes = {"text/plain"})
+    @PutMapping(value = "admin/users/{id}/password", consumes = {"text/plain"})
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void changePassword(@RequestBody String password, @PathVariable int id) throws WiseMappingException {
         if (password == null) {
@@ -119,7 +119,7 @@ public class AdminController extends BaseController {
         userService.changePassword(user);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "admin/users/{id}")
+    @DeleteMapping(value = "admin/users/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteUserByEmail(@PathVariable int id) throws WiseMappingException {
         final User user = userService.getUserBy(id);
@@ -135,4 +135,5 @@ public class AdminController extends BaseController {
 
         userService.removeUser(user);
     }
+
 }

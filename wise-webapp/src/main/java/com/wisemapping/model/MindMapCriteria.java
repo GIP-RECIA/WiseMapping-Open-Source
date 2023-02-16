@@ -18,10 +18,8 @@
 
 package com.wisemapping.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MindMapCriteria {
+
     private String title;
     private String description;
     private boolean orConnector = false;
@@ -30,19 +28,18 @@ public class MindMapCriteria {
     public MindMapCriteria() {
     }
 
-    public int getPageNro()
-    {
+    public int getPageNro() {
         return pageNro;
     }
 
-    public void setPageNro(int page)
-    {
+    public void setPageNro(int page) {
         this.pageNro = page;
     }
 
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }

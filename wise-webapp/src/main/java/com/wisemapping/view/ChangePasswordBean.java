@@ -38,4 +38,5 @@ public class ChangePasswordBean {
     public void setRetryPassword(String e) {
         this.retryPassword = e;
     }
+
 }

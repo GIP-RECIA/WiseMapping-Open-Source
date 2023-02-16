@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.wisemapping.model.Collaborator;
 import com.wisemapping.model.Mindmap;
@@ -52,7 +51,6 @@ public class RestMindmapList {
     }
 
     public void setCount(int count) {
-
     }
 
     @XmlElement(name = "map")
@@ -63,4 +61,5 @@ public class RestMindmapList {
     public void setMindmapsInfo(List<RestMindmapInfo> mindmapsInfo) {
         this.mindmapsInfo = mindmapsInfo;
     }
+
 }

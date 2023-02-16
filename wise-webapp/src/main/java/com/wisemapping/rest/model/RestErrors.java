@@ -15,8 +15,8 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 */
-package com.wisemapping.rest.model;
 
+package com.wisemapping.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,9 +30,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 @JsonAutoDetect(
@@ -43,6 +40,7 @@ import java.util.*;
 )
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestErrors {
+
     @JsonIgnore
     private Errors errors;
 
@@ -57,14 +55,12 @@ public class RestErrors {
 
     @Nullable
     @JsonIgnore
-    private String _debugInfo;
+    private String debugInfo;
 
     public RestErrors() {
-
     }
 
     public RestErrors(@NotNull Errors errors, @NotNull MessageSource messageSource) {
-
         this.errors = errors;
         this.messageSource = messageSource;
         this.gErrors = this.processGlobalErrors(errors);
@@ -72,12 +68,11 @@ public class RestErrors {
     }
 
     public RestErrors(@NotNull String errorMsg, @NotNull Severity severity) {
-
         this(errorMsg, severity, null);
     }
 
     public RestErrors(@NotNull String errorMsg, @NotNull Severity severity, @Nullable String debugInfo) {
-        this._debugInfo = debugInfo;
+        this.debugInfo = debugInfo;
         this.gErrors = new ArrayList<>();
         this.gErrors.add(errorMsg);
         this.gSeverity = severity;
@@ -120,7 +115,6 @@ public class RestErrors {
         // Implemented only for XML serialization contract ...
     }
 
-
     @Nullable
     public String getGlobalSeverity() {
         return this.gSeverity.toString();
@@ -128,7 +122,7 @@ public class RestErrors {
 
     @Nullable
     public String getDebugInfo() {
-        return _debugInfo;
+        return debugInfo;
     }
 
     public List<String> getGlobalErrors() {

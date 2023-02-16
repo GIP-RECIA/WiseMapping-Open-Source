@@ -25,7 +25,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Calendar;
 
 public class LockInfo {
-    final private User user;
+
+    private final User user;
     private Calendar timeout;
     private static final int EXPIRATION_MIN = 30;
 
@@ -57,7 +58,6 @@ public class LockInfo {
         final Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, EXPIRATION_MIN);
         this.timeout = calendar;
-
     }
 
     @Override
@@ -68,4 +68,5 @@ public class LockInfo {
                 ", mapId=" + mapId +
                 '}';
     }
+
 }

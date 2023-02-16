@@ -14,5 +14,5 @@ public enum HttpInvokerContentType {
 	public String getHttpContentType() {
 		return httpContentType;
 	}
-	
+
 }

@@ -27,7 +27,6 @@ public class HibernateUtil {
 
     static {
         try {
-
             sessionFactory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
@@ -39,4 +38,5 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
 }

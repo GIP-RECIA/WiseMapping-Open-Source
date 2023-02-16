@@ -37,7 +37,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
 @Controller
 @CrossOrigin
 public class Oauth2Controller extends BaseController {
@@ -64,7 +63,7 @@ public class Oauth2Controller extends BaseController {
 		session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/oauth2/googlecallback", produces = { "application/json" })
+	@PostMapping(value = "/oauth2/googlecallback", produces = { "application/json" })
 	@ResponseStatus(value = HttpStatus.OK)
 	public RestOath2CallbackResponse processGoogleCallback(@NotNull @RequestParam String code, @NotNull HttpServletRequest request) throws WiseMappingException {
 		User user = userService.createUserFromGoogle(code);
@@ -78,7 +77,7 @@ public class Oauth2Controller extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/oauth2/confirmaccountsync", produces = { "application/json" })
+	@PutMapping(value = "/oauth2/confirmaccountsync", produces = { "application/json" })
 	@ResponseStatus(value = HttpStatus.OK)
 	public void confirmAccountSync(@NotNull @RequestParam String email, @NotNull @RequestParam String code, @NotNull HttpServletRequest request) throws WiseMappingException {
 		userService.confirmAccountSync(email, code);

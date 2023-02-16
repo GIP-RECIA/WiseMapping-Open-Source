@@ -43,7 +43,7 @@ import java.util.Locale;
 
 public class BaseController {
 
-    final private Logger logger = LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger();
 
     @Qualifier("messageSource")
     @Autowired
@@ -112,4 +112,5 @@ public class BaseController {
     public RestErrors handleRegistrationErrors(@NotNull RegistrationException exception) {
         return new RestErrors(exception, messageSource);
     }
+
 }

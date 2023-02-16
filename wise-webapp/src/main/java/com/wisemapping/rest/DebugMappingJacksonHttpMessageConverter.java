@@ -28,7 +28,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 public class DebugMappingJacksonHttpMessageConverter extends MappingJackson2HttpMessageConverter {
 
     @Override
@@ -44,10 +43,11 @@ public class DebugMappingJacksonHttpMessageConverter extends MappingJackson2Http
             throw new JsonHttpMessageNotReadableException("Request Body could not be read", e);
         }
     }
+
 }
 
-
 class WrapHttpInputMessage implements HttpInputMessage {
+
     private final InputStream body;
     private final HttpHeaders headers;
 
@@ -65,4 +65,5 @@ class WrapHttpInputMessage implements HttpInputMessage {
     public HttpHeaders getHeaders() {
         return headers;
     }
+
 }

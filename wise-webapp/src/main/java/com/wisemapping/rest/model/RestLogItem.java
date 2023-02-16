@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jetbrains.annotations.NotNull;
 
@@ -65,4 +64,5 @@ public class RestLogItem {
     public void setJsErrorMsg(String jsErrorMsg) {
         this.jsErrorMsg = jsErrorMsg;
     }
+
 }

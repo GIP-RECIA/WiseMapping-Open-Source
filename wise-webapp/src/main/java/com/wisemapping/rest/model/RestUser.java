@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -28,7 +27,6 @@ import com.wisemapping.model.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
-
 
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.NONE,
@@ -121,6 +119,5 @@ public class RestUser {
     public int hashCode() {
         return this.getDelegated().hashCode();
     }
-
 
 }

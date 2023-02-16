@@ -25,8 +25,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import java.util.List;
 
-public class LabelManagerImpl extends HibernateDaoSupport
-        implements LabelManager {
+public class LabelManagerImpl extends HibernateDaoSupport implements LabelManager {
 
     @Override
     public void addLabel(@NotNull final Label label) {

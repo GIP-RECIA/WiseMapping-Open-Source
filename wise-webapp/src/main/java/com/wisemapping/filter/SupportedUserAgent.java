@@ -18,6 +18,6 @@
 
 package com.wisemapping.filter;
 
-public interface  SupportedUserAgent{
+public interface  SupportedUserAgent {
     String USER_AGENT_HEADER = "User-Agent";
 }

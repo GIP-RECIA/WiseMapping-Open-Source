@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wisemapping.model.MindMapHistory;
@@ -39,7 +38,7 @@ import java.util.TimeZone;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestMindmapHistory {
 
-    static private final SimpleDateFormat sdf;
+    private static final SimpleDateFormat sdf;
     private  int id;
     private  Calendar creation;
     private  String creator;
@@ -65,7 +64,6 @@ public class RestMindmapHistory {
 
     public void setCreationTime() {
     }
-
     
     public String getCreator() {
         return creator;
@@ -85,4 +83,5 @@ public class RestMindmapHistory {
     public int getId() {
         return id;
     }
+
 }

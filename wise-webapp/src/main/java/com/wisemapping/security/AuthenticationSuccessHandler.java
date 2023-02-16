@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.security;
 
 import org.springframework.security.core.Authentication;
@@ -28,8 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+
     private final RequestCache cache;
 
     public AuthenticationSuccessHandler() {

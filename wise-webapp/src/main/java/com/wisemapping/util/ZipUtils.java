@@ -18,7 +18,6 @@
 
 package com.wisemapping.util;
 
-
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -65,4 +64,5 @@ public class ZipUtils {
 
         return byteArray.toByteArray();
     }
+
 }

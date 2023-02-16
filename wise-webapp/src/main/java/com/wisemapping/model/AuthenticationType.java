@@ -15,8 +15,8 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.wisemapping.model;
 
+package com.wisemapping.model;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +24,7 @@ public enum AuthenticationType {
     DATABASE('D'),
     LDAP('L'),
     GOOGLE_OAUTH2('G');
-	
+
     private final char schemaCode;
 
     AuthenticationType(char schemaCode) {
@@ -52,4 +52,5 @@ public enum AuthenticationType {
 
         return result;
     }
+
 }

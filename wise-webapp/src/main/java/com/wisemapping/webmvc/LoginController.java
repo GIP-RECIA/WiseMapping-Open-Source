@@ -22,8 +22,7 @@ import com.wisemapping.model.User;
 import com.wisemapping.security.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -32,7 +31,7 @@ public class LoginController {
     @Value("${database.driver}")
     private String driver;
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @GetMapping(value = "login")
     protected ModelAndView showLoginPage() {
         final User user = Utils.getUser(false);
         ModelAndView result;
@@ -44,4 +43,5 @@ public class LoginController {
         }
         return result;
     }
+
 }

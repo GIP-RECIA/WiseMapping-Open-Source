@@ -27,22 +27,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
+
 	private final com.wisemapping.model.User user;
     private final boolean isAdmin;
 
-    public  UserDetails(@NotNull final com.wisemapping.model.User user, boolean isAdmin) {
+    public UserDetails(@NotNull final com.wisemapping.model.User user, boolean isAdmin) {
         this.user = user;
         this.isAdmin = isAdmin;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        final Collection<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
+        final Collection<GrantedAuthority> result = new ArrayList<>();
         if (this.isAdmin) {
-            final SimpleGrantedAuthority role_admin = new SimpleGrantedAuthority("ROLE_ADMIN");
-            result.add(role_admin);
+            final SimpleGrantedAuthority roleAdmin = new SimpleGrantedAuthority("ROLE_ADMIN");
+            result.add(roleAdmin);
         }
-        final SimpleGrantedAuthority role_user = new SimpleGrantedAuthority("ROLE_USER");
-        result.add(role_user);
+        final SimpleGrantedAuthority roleUser = new SimpleGrantedAuthority("ROLE_USER");
+        result.add(roleUser);
         return result;
     }
 
@@ -74,10 +75,10 @@ public class UserDetails implements org.springframework.security.core.userdetail
     @Override
     public boolean isEnabled() {
         return this.user.isActive();
-
     }
 
     public User getUser() {
         return user;
     }
+
 }

@@ -18,12 +18,12 @@
 
 package com.wisemapping.rest;
 
-
 import com.wisemapping.exceptions.WiseMappingException;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.validation.Errors;
 
 public class ValidationException extends WiseMappingException {
+
     private final Errors errors;
 
     public ValidationException(@NotNull Errors errors) {
@@ -34,4 +34,5 @@ public class ValidationException extends WiseMappingException {
     public Errors getErrors() {
         return errors;
     }
+
 }

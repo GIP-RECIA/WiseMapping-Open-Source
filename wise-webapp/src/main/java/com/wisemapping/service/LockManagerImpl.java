@@ -34,10 +34,11 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
 class LockManagerImpl implements LockManager {
+
     private static final int ONE_MINUTE_MILLISECONDS = 1000 * 60;
     private final Map<Integer, LockInfo> lockInfoByMapId;
-    private final static Timer expirationTimer = new Timer();
-    final private static Logger logger = LogManager.getLogger();
+    private static final Timer expirationTimer = new Timer();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public boolean isLocked(@NotNull Mindmap mindmap) {
@@ -67,7 +68,7 @@ class LockManagerImpl implements LockManager {
     }
 
     private void unlock(int mapId) {
-        logger.debug("Unlock map id:" + mapId);
+        logger.debug("Unlock map id: {}", mapId);
         lockInfoByMapId.remove(mapId);
     }
 
@@ -80,7 +81,6 @@ class LockManagerImpl implements LockManager {
         }
         return result;
     }
-
 
     @Override
     public long generateSession() {
@@ -97,13 +97,13 @@ class LockManagerImpl implements LockManager {
         // Do I need to create a new lock ?
         LockInfo result = lockInfoByMapId.get(mindmap.getId());
         if (result == null) {
-            logger.debug("Creating new lock for map id:" + mindmap.getId());
+            logger.debug("Creating new lock for map id: {}", mindmap.getId());
             result = new LockInfo(user, mindmap);
             lockInfoByMapId.put(mindmap.getId(), result);
         }
 
         // Update timestamp ...
-        logger.debug("Updating timeout:" + result);
+        logger.debug("Updating timeout: {}", result);
         result.updateTimeout();
 
         return result;
@@ -128,7 +128,7 @@ class LockManagerImpl implements LockManager {
             public void run() {
 
                 synchronized (this) {
-                    logger.debug("Lock expiration scheduler started. Current locks:" + lockInfoByMapId.keySet());
+                    logger.debug("Lock expiration scheduler started. Current locks: {}", lockInfoByMapId.keySet());
                     // Search for expired sessions and remove them ....
                     lockInfoByMapId.
                             keySet().
@@ -140,4 +140,5 @@ class LockManagerImpl implements LockManager {
             }
         }, ONE_MINUTE_MILLISECONDS, ONE_MINUTE_MILLISECONDS);
     }
+
 }

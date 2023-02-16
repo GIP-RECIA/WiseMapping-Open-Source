@@ -18,7 +18,6 @@
 
 package com.wisemapping.rest.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wisemapping.model.User;
@@ -37,13 +36,11 @@ public class RestLockInfo {
 
     // This is required only for compliance with the JAXB serializer.
     public RestLockInfo() {
-
     }
 
     public RestLockInfo(@Nullable LockInfo lockInfo, @NotNull User user) {
         this.email = user.getEmail();
     }
-
 
     public String getEmail() {
         return email;
@@ -52,5 +49,5 @@ public class RestLockInfo {
     public void setEmail(String email) {
         this.email = email;
     }
-}
 
+}

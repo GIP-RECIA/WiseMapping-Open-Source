@@ -16,7 +16,6 @@
  *   limitations under the License.
  */
 
-
 package com.wisemapping.mail;
 
 import com.wisemapping.util.VelocityEngineUtils;
@@ -82,4 +81,5 @@ public final class Mailer {
     public String getErrorReporterEmail() {
         return errorReporterEmail;
     }
+
 }

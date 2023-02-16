@@ -15,6 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+
 package com.wisemapping.service;
 
 import com.wisemapping.dao.LabelManager;
@@ -36,7 +37,6 @@ public class LabelServiceImpl implements LabelService {
 
     @Override
     public void addLabel(@NotNull final Label label, @NotNull final User user) throws WiseMappingException {
-
         label.setCreator(user);
         labelManager.addLabel(label);
     }
@@ -64,7 +64,7 @@ public class LabelServiceImpl implements LabelService {
             labelManager.removeLabel(label);
         } else {
             throw new WiseMappingException("User: "+ user.getFullName()  + "has no ownership on label " + label.getTitle());
-
         }
     }
+
 }

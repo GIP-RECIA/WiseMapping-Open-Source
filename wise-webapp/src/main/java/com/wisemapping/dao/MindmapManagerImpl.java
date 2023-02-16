@@ -35,9 +35,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
-public class MindmapManagerImpl
-        extends HibernateDaoSupport
-        implements MindmapManager {
+public class MindmapManagerImpl extends HibernateDaoSupport implements MindmapManager {
 
     @Override
     public Collaborator findCollaborator(@NotNull final String email) {
@@ -243,4 +241,5 @@ public class MindmapManagerImpl
         history.setMindmapId(mindMap.getId());
         getHibernateTemplate().saveOrUpdate(history);
     }
+
 }

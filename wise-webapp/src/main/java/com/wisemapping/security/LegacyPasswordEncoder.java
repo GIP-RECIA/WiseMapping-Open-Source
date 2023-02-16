@@ -29,27 +29,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
 public class LegacyPasswordEncoder implements PasswordEncoder {
-    final private static Logger logger = LogManager.getLogger();
+
+    private static final Logger logger = LogManager.getLogger();
 
     public static final String ENC_PREFIX = "ENC:";
     private final ShaPasswordEncoder sha1Encoder = new ShaPasswordEncoder();
 
     @Override
     public String encode(CharSequence rawPassword) {
-
         logger.debug("LegacyPasswordEncoder encode executed.");
         return ENC_PREFIX + sha1Encoder.encode(rawPassword.toString(), "");
-
     }
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-
         final String encode = encode(rawPassword);
         return encode.equals(encodedPassword);
     }
+
 }
 
 /**
@@ -60,14 +58,12 @@ class ShaPasswordEncoder {
     private final String algorithm;
     private final boolean encodeHashAsBase64;
 
-
     /**
      * The digest algorithm to use
      * Supports the named <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html#AppA">
      * Message Digest Algorithms</a> in the Java environment.
      **/
     ShaPasswordEncoder() {
-
         this("SHA-1", false);
     }
 
@@ -133,8 +129,7 @@ class ShaPasswordEncoder {
         }
 
         if (strict && (salt != null)) {
-            if ((salt.toString().lastIndexOf("{") != -1)
-                    || (salt.toString().lastIndexOf("}") != -1)) {
+            if ((salt.toString().lastIndexOf("{") != -1) || (salt.toString().lastIndexOf("}") != -1)) {
                 throw new IllegalArgumentException("Cannot use { or } in salt.toString()");
             }
         }
@@ -142,7 +137,8 @@ class ShaPasswordEncoder {
         if ((salt == null) || "".equals(salt)) {
             return password;
         } else {
-            return password + "{" + salt.toString() + "}";
+            return password + "{" + salt + "}";
         }
     }
+
 }
