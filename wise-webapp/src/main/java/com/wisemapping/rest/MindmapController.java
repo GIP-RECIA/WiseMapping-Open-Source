@@ -341,8 +341,8 @@ public class MindmapController extends BaseController {
                 .stream()
                 .collect(Collectors.toMap(
                         collaboration -> collaboration.getCollaborator().getEmail(),
-                        collaboration -> collaboration)
-                );
+                        collaboration -> collaboration
+                ));
 
         // Great, let's add all the collabs again ...
         for (RestCollaboration restCollab : restCollabs.getCollaborations()) {
