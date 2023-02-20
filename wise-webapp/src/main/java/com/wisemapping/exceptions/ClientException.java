@@ -26,7 +26,7 @@ public abstract class ClientException extends WiseMappingException {
 
     private final Severity severity;
 
-    public ClientException(@NotNull String message, @NotNull Severity severity) {
+    protected ClientException(@NotNull String message, @NotNull Severity severity) {
         super(message);
         this.severity = severity;
     }
@@ -36,9 +36,9 @@ public abstract class ClientException extends WiseMappingException {
     String getMsgBundleKey();
 
     public String getMessage(@NotNull final MessageSource messageSource, final @NotNull Locale locale) {
-        String message = messageSource.getMessage(this.getMsgBundleKey(), this.getMsgBundleArgs(), locale);
-        if (message == null) {
-            message = this.getMessage();
+        String message = this.getMessage();
+        if (message.isEmpty()) {
+            message = messageSource.getMessage(this.getMsgBundleKey(), this.getMsgBundleArgs(), locale);
         }
         return message;
     }

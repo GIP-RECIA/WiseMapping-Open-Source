@@ -24,7 +24,7 @@ public class WiseMappingException extends Exception {
         super(str);
     }
 
-    public WiseMappingException(String str,Throwable e) {
+    public WiseMappingException(String str, Throwable e) {
         super(str);
         initCause(e);
     }
