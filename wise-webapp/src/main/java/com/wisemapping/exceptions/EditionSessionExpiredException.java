@@ -25,7 +25,7 @@ public class EditionSessionExpiredException extends ClientException {
     private static final String MSG_KEY = "MINDMAP_TIMESTAMP_OUTDATED";
 
     public EditionSessionExpiredException(@NotNull String msg) {
-        super(msg,Severity.INFO);
+        super(msg, Severity.INFO);
     }
 
     @NotNull

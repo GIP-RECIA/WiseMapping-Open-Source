@@ -18,7 +18,7 @@
 
 package com.wisemapping.exceptions;
 
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 public class InvalidEmailException extends ClientException {
 

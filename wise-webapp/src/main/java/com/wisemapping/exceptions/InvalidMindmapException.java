@@ -18,9 +18,8 @@
 
 package com.wisemapping.exceptions;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
-
-import javax.validation.constraints.NotNull;
 
 public class InvalidMindmapException extends ClientException {
 

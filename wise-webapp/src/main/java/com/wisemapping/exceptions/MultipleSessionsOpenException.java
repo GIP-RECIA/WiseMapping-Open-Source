@@ -25,7 +25,7 @@ public class MultipleSessionsOpenException extends ClientException {
     private static final String MSG_KEY = "MINDMAP_OUTDATED_BY_YOU";
 
     public MultipleSessionsOpenException(@NotNull String techInfo) {
-        super(techInfo,Severity.INFO);
+        super(techInfo, Severity.INFO);
     }
 
     @NotNull

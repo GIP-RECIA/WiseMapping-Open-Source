@@ -26,7 +26,7 @@ public class EmailNotExistsException extends ClientException {
     private static final String MSG_KEY = "RESET_PASSWORD_INVALID_EMAIL";
 
     public EmailNotExistsException(@NotNull InvalidUserEmailException e) {
-        super(e.getMessage(),Severity.INFO);
+        super(e.getMessage(), Severity.INFO);
     }
 
     @NotNull

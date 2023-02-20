@@ -18,13 +18,13 @@
 
 package com.wisemapping.exceptions;
 
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 public class TooManyInactiveAccountsExceptions extends ClientException {
 
     private static final String TOO_MANY_INACTIVE_ACCOUNTS = "TOO_MANY_INACTIVE_ACCOUNTS";
 
-    public TooManyInactiveAccountsExceptions(@NotNull long accounts) {
+    public TooManyInactiveAccountsExceptions(long accounts) {
         super("Too many inactive accounts:" + accounts, Severity.WARNING);
     }
 
