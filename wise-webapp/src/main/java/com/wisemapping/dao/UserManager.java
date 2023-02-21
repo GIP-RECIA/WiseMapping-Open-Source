@@ -29,6 +29,8 @@ public interface UserManager {
 
     List<User> getAllUsers();
 
+    User getUserByCasUid(String casUid);
+
     User getUserBy(String email);
 
     User getUserBy(int id);

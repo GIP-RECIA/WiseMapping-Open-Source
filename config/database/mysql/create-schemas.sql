@@ -18,6 +18,7 @@ CREATE TABLE USER (
                       CHARACTER SET utf8 NOT NULL,
   authenticator_uri   VARCHAR(255)
                       CHARACTER SET utf8,
+  cas_uid          VARCHAR(255) CHARACTER SET utf8,
   firstname        VARCHAR(255) CHARACTER SET utf8 NOT NULL,
   lastname         VARCHAR(255) CHARACTER SET utf8 NOT NULL,
   password         VARCHAR(255) CHARACTER SET utf8 NOT NULL,

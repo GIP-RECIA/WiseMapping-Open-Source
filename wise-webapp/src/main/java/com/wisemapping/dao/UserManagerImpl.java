@@ -50,6 +50,22 @@ public class UserManagerImpl extends HibernateDaoSupport implements UserManager 
     }
 
     @Override
+    public User getUserByCasUid(String casUid) {
+        User user = null;
+
+        var query = currentSession().createQuery("from com.wisemapping.model.User colaborator where cas_uid=:casUid");
+        query.setParameter("casUid", casUid);
+
+        try {
+            user = (User) query.list().get(0);
+        } catch (Exception e) {
+            // Ignore ...
+        }
+
+        return user;
+    }
+
+    @Override
     @Nullable
     public User getUserBy(@NotNull final String email) {
         User user = null;

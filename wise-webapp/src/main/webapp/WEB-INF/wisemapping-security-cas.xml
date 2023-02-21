@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="passwordEncoder"
+          class="com.wisemapping.security.DefaultPasswordEncoderFactories"
+          factory-method="createDelegatingPasswordEncoder"/>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider ref="casAuthenticationProvider"/>
+    </sec:authentication-manager>
+
+    <!-- ================================================== -->
+    <!-- LDAP settings                                      -->
+    <!-- ================================================== -->
+
+    <bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+        <property name="url" value="${security.cas.ldap.server}"/>
+        <property name="userDn" value="${security.cas.ldap.server.user}"/>
+        <property name="password" value="${security.cas.ldap.server.password}"/>
+        <property name="base" value="${security.cas.ldap.basedn}"/>
+    </bean>
+
+    <!-- MethodSecurityConfig -->
+
+<!--    <bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">-->
+<!--    </bean>-->
+
+<!--    <bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchy">-->
+<!--    </bean>-->
+
+    <!-- SecurityConfiguration -->
+
+<!--    <bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">-->
+<!--    </bean>-->
+
+    <bean id="casAuthenticationProvider"
+          class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+    </bean>
+
+<!--    <bean id="sessionStrategy"-->
+<!--          class="org.springframework.security.web.authentication.session.SessionAuthenticationStrategy">-->
+<!--    </bean>-->
+
+<!--    <bean id="authenticationManager" class="org.springframework.security.authentication.AuthenticationManager">-->
+<!--    </bean>-->
+
+<!--    <bean id="cas20ServiceTicketValidator" class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">-->
+<!--    </bean>-->
+
+<!--    <bean id="casAuthenticationFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter">-->
+<!--    </bean>-->
+
+<!--    <bean id="casAuthenticationEntryPoint" class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">-->
+<!--    </bean>-->
+
+<!--    <bean id="singleSignOutFilter" class="com.wisemapping.security.cas.CustomSingleSignOutFilter">-->
+<!--    </bean>-->
+
+    <!-- CasConfiguration -->
+
+    <bean id="casConfiguration" class="com.wisemapping.security.cas.CasConfiguration">
+        <property name="casUrlLogin" value="${security.cas.service.login}"/>
+        <property name="casUrlLogout" value="${security.cas.service.logout}"/>
+        <property name="casUrlPrefix" value="${security.cas.url.prefix}"/>
+        <property name="casUrlService" value="${app.service.security}"/>
+        <property name="appServiceHome" value="${app.service.home}"/>
+    </bean>
+
+    <!-- CasUserDetailsService -->
+
+    <bean id="casUserDetailsService" class="com.wisemapping.security.cas.CasUserDetailsService">
+        <property name="userService" ref="userService"/>
+        <property name="ldapAttributeFirstName" value="${security.cas.ldap.firstName.attribute}"/>
+        <property name="ldapAttributeLastName" value="${security.cas.ldap.lastName.attribute}"/>
+        <property name="ldapAttributeEmail" value="${security.cas.ldap.ldapEmail.attribute}"/>
+    </bean>
+
+</beans>

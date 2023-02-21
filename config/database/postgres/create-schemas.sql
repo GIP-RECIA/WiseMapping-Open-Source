@@ -8,6 +8,7 @@ CREATE TABLE public.USER (
   colaborator_id      SERIAL        NOT NULL PRIMARY KEY,
   authentication_type CHAR          NOT NULL,
   authenticator_uri   VARCHAR(255),
+  cas_uid             VARCHAR(255),
   firstname           VARCHAR(255)  NOT NULL,
   lastname            VARCHAR(255)  NOT NULL,
   password            VARCHAR(255)  NOT NULL,

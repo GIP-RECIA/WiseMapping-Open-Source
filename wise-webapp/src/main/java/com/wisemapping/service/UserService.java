@@ -36,6 +36,8 @@ public interface UserService {
 
     void changePassword(@NotNull User user);
 
+    User getUserByCasUid(String casUid);
+
     User getUserBy(String email);
 
     User getUserBy(int id);

@@ -30,6 +30,8 @@ import java.util.Calendar;
 @PrimaryKeyJoinColumn(name = "colaborator_id")
 public class User extends Collaborator implements Serializable {
 
+    @Column(name = "cas_uid")
+    private String casUid;
     private String firstname;
     private String lastname;
     private String password;
@@ -64,6 +66,14 @@ public class User extends Collaborator implements Serializable {
 
     public String getFullName() {
         return this.getFirstname() + " " + this.getLastname();
+    }
+
+    public String getCasUid() {
+        return casUid;
+    }
+
+    public void setCasUid(String casUid) {
+        this.casUid = casUid;
     }
 
     public String getFirstname() {

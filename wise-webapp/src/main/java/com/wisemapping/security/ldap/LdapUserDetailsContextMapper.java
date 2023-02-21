@@ -95,5 +95,4 @@ public class LdapUserDetailsContextMapper implements UserDetailsContextMapper {
         // To be implemented ...
     }
 
-
 }

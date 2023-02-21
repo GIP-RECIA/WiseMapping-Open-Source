@@ -234,6 +234,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByCasUid(String casUid) {
+        return userManager.getUserByCasUid(casUid);
+    }
+
+    @Override
     public User getUserBy(String email) {
         return userManager.getUserBy(email);
     }

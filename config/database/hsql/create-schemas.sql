@@ -8,6 +8,7 @@ CREATE TABLE USER (
   colaborator_id      INTEGER      NOT NULL IDENTITY,
   authentication_type CHAR(1)      NOT NULL,
   authenticator_uri   VARCHAR(255) NULL,
+  cas_uri             VARCHAR(255),
   firstname           VARCHAR(255) NOT NULL,
   lastname            VARCHAR(255) NOT NULL,
   password            VARCHAR(255) NOT NULL,
